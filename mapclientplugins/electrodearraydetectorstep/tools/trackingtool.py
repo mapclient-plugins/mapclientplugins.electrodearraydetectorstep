@@ -30,7 +30,7 @@ class TrackingTool(object):
             field_module.beginChange()
             image_points = self._image_plane_model.convert_to_image_coordinates(key_points)
             numpy_points = np.asarray(image_points, dtype=np.float32)
-            number_of_images = self._image_plane_model.get_number_of_images()
+            number_of_images = self._image_plane_model.get_frame_count()
             frames_per_second = self._master_model.get_frames_per_second()
             previous_gray_image = self._processor.get_gray_image()
             image_index = self._key_index

@@ -1,5 +1,5 @@
-Image Based Fiducial Markers
-============================
+Electrode Array Detector
+========================
 
-The Image Based Fiducial Markers step is a plugin for the MAP Client application.
+The Electrode Array Detector step is a plugin for the MAP Client application.
 

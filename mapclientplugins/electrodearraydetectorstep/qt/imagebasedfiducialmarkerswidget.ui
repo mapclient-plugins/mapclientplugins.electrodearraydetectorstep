@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Image Based Fiducial Markers</string>
+   <string>Electrode Array Detector</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>

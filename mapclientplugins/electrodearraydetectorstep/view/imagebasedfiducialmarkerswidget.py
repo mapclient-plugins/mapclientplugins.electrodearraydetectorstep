@@ -3,14 +3,14 @@ from PySide import QtGui, QtCore
 
 from opencmiss.zinchandlers.scenemanipulation import SceneManipulation
 
-from mapclientplugins.imagebasedfiducialmarkersstep.handlers.datapointadder import DataPointAdder
-from mapclientplugins.imagebasedfiducialmarkersstep.handlers.datapointremover import DataPointRemover
-from mapclientplugins.imagebasedfiducialmarkersstep.handlers.rectangletool import RectangleTool
-from mapclientplugins.imagebasedfiducialmarkersstep.static.strings import DEFINE_ROI_STRING, \
+from mapclientplugins.electrodearraydetectorstep.handlers.datapointadder import DataPointAdder
+from mapclientplugins.electrodearraydetectorstep.handlers.datapointremover import DataPointRemover
+from mapclientplugins.electrodearraydetectorstep.handlers.rectangletool import RectangleTool
+from mapclientplugins.electrodearraydetectorstep.static.strings import DEFINE_ROI_STRING, \
     SET_INITIAL_TRACKING_POINTS_STRING, FINALISE_TRACKING_POINTS_STRING
-from mapclientplugins.imagebasedfiducialmarkersstep.tools.datapointtool import DataPointTool
-from mapclientplugins.imagebasedfiducialmarkersstep.tools.trackingtool import TrackingTool
-from mapclientplugins.imagebasedfiducialmarkersstep.view.ui_imagebasedfiducialmarkerswidget\
+from mapclientplugins.electrodearraydetectorstep.tools.datapointtool import DataPointTool
+from mapclientplugins.electrodearraydetectorstep.tools.trackingtool import TrackingTool
+from mapclientplugins.electrodearraydetectorstep.view.ui_imagebasedfiducialmarkerswidget\
     import Ui_ImageBasedFiducialMarkersWidget
 
 PLAY_TEXT = 'Play'
@@ -28,9 +28,12 @@ class ImageBasedFiducialMarkersWidget(QtGui.QWidget):
         self._settings = {'view-parameters': {}}
 
         self._model = model
+        self._model.reset()
         self._model.register_time_value_update_callback(self._update_time_value)
         self._model.register_frame_index_update_callback(self._update_frame_index)
         self._image_plane_scene = model.get_image_plane_scene()
+        self._image_plane_scene.create_graphics()
+        self._image_plane_scene.set_image_material()
         self._done_callback = None
 
         self._image_plane_model = model.get_image_plane_model()
@@ -83,7 +86,6 @@ class ImageBasedFiducialMarkersWidget(QtGui.QWidget):
                 self._ui.sceneviewer_widget.set_view_parameters(eye, look_at, up, angle)
 
     def _set_initial_ui_state(self):
-        self._ui.framesPerSecond_spinBox.setValue(self._model.get_frames_per_second())
         self._ui.timeLoop_checkBox.setChecked(self._model.is_time_loop())
         self._ui.defineROI_radioButton.setChecked(True)
         self._enter_define_roi()

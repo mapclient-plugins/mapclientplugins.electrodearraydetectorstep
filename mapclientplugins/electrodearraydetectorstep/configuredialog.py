@@ -1,7 +1,7 @@
 
 
 from PySideX import QtWidgets
-from mapclientplugins.imagebasedfiducialmarkersstep.ui_configuredialog import Ui_ConfigureDialog
+from mapclientplugins.electrodearraydetectorstep.ui_configuredialog import Ui_ConfigureDialog
 
 INVALID_STYLE_SHEET = 'background-color: rgba(239, 0, 0, 50)'
 DEFAULT_STYLE_SHEET = ''
@@ -29,7 +29,7 @@ class ConfigureDialog(QtWidgets.QDialog):
         self._makeConnections()
 
     def _makeConnections(self):
-        self._ui.lineEdit0.textChanged.connect(self.validate)
+        self._ui.identifier_lineEdit.textChanged.connect(self.validate)
 
     def accept(self):
         """
@@ -56,12 +56,12 @@ class ConfigureDialog(QtWidgets.QDialog):
         """
         # Determine if the current identifier is unique throughout the workflow
         # The identifierOccursCount method is part of the interface to the workflow framework.
-        value = self.identifierOccursCount(self._ui.lineEdit0.text())
-        valid = (value == 0) or (value == 1 and self._previousIdentifier == self._ui.lineEdit0.text())
+        value = self.identifierOccursCount(self._ui.identifier_lineEdit.text())
+        valid = (value == 0) or (value == 1 and self._previousIdentifier == self._ui.identifier_lineEdit.text())
         if valid:
-            self._ui.lineEdit0.setStyleSheet(DEFAULT_STYLE_SHEET)
+            self._ui.identifier_lineEdit.setStyleSheet(DEFAULT_STYLE_SHEET)
         else:
-            self._ui.lineEdit0.setStyleSheet(INVALID_STYLE_SHEET)
+            self._ui.identifier_lineEdit.setStyleSheet(INVALID_STYLE_SHEET)
 
         return valid
 
@@ -71,8 +71,9 @@ class ConfigureDialog(QtWidgets.QDialog):
         set the _previousIdentifier value so that we can check uniqueness of the
         identifier over the whole of the workflow.
         '''
-        self._previousIdentifier = self._ui.lineEdit0.text()
-        config = {'identifier': self._ui.lineEdit0.text()}
+        self._previousIdentifier = self._ui.identifier_lineEdit.text()
+        config = {'identifier': self._ui.identifier_lineEdit.text(),
+                  'output_port': 'fiducials' if self._ui.fiducials_radioButton.isChecked() else 'electrodes'}
         return config
 
     def setConfig(self, config):
@@ -82,5 +83,6 @@ class ConfigureDialog(QtWidgets.QDialog):
         identifier over the whole of the workflow.
         '''
         self._previousIdentifier = config['identifier']
-        self._ui.lineEdit0.setText(config['identifier'])
-
+        self._ui.identifier_lineEdit.setText(config['identifier'])
+        self._ui.fiducials_radioButton.setChecked(config['output_port'] == 'fiducials')
+        self._ui.electrode_radioButton.setChecked(config['output_port'] == 'electrodes')

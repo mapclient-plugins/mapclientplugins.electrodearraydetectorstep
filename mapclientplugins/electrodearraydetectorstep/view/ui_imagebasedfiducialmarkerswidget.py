@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mapclientplugins\imagebasedfiducialmarkersstep\qt\imagebasedfiducialmarkerswidget.ui'
+# Form implementation generated from reading ui file 'mapclientplugins\electrodearraydetectorstep\qt\imagebasedfiducialmarkerswidget.ui'
 #
 # Created: Tue Sep 11 14:37:18 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
@@ -136,7 +136,7 @@ class Ui_ImageBasedFiducialMarkersWidget(object):
         QtCore.QMetaObject.connectSlotsByName(ImageBasedFiducialMarkersWidget)
 
     def retranslateUi(self, ImageBasedFiducialMarkersWidget):
-        ImageBasedFiducialMarkersWidget.setWindowTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Image Based Fiducial Markers", None, QtGui.QApplication.UnicodeUTF8))
+        ImageBasedFiducialMarkersWidget.setWindowTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Electrode Array Detector", None, QtGui.QApplication.UnicodeUTF8))
         self.controlPanel_groupBox.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Control Panel", None, QtGui.QApplication.UnicodeUTF8))
         self.time_groupBox.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Time:", None, QtGui.QApplication.UnicodeUTF8))
         self.timePlayStop_pushButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Play", None, QtGui.QApplication.UnicodeUTF8))

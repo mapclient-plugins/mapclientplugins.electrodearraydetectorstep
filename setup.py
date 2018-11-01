@@ -55,8 +55,8 @@ class InstallCommand(install):
 
 
 setup(
-    name='mapclientplugins.imagebasedfiducialmarkersstep',
-    version=find_version("mapclientplugins", "imagebasedfiducialmarkersstep", "__init__.py"),
+    name='mapclientplugins.electrodearraydetectorstep',
+    version=find_version("mapclientplugins", "electrodearraydetectorstep", "__init__.py"),
     description='',
     long_description='\n'.join(readme) + source_license,
     classifiers=[

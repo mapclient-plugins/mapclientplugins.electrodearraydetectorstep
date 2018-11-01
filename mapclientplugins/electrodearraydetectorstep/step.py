@@ -8,41 +8,42 @@ import os
 from PySide import QtGui
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
-from mapclientplugins.imagebasedfiducialmarkersstep.configuredialog import ConfigureDialog
-from mapclientplugins.imagebasedfiducialmarkersstep.model.imagebasedfiducialmarkersmastermodel import \
+from mapclientplugins.electrodearraydetectorstep.configuredialog import ConfigureDialog
+from mapclientplugins.electrodearraydetectorstep.model.imagebasedfiducialmarkersmastermodel import \
     ImageBasedFiducialMarkersMasterModel
-from mapclientplugins.imagebasedfiducialmarkersstep.view.imagebasedfiducialmarkerswidget import \
+from mapclientplugins.electrodearraydetectorstep.view.imagebasedfiducialmarkerswidget import \
     ImageBasedFiducialMarkersWidget
 
 
-class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
+class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
     """
     Skeleton step which is intended to be a helpful starting point
     for new steps.
     """
 
     def __init__(self, location):
-        super(ImageBasedFiducialMarkersStep, self).__init__('Image Based Fiducial Markers', location)
+        super(ElectrodeArrayDetectorStep, self).__init__('Electrode Array Detector', location)
         self._configured = False # A step cannot be executed until it has been configured.
         self._category = 'Image Processing'
         # Add any other initialisation code here:
-        self._icon = QtGui.QImage(':/imagebasedfiducialmarkersstep/images/image-processing.png')
+        self._icon = QtGui.QImage(':/electrodearraydetectorstep/images/image-processing.png')
         # Ports:
-        self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
-                      'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
-                      'http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data'))
-        self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
-                      'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
-                      'http://physiomeproject.org/workflow/1.0/rdf-schema#time_labelled_fiducial_marker_locations'))
+        self._time_labelled_fiducial_marker_locations = (
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#port',
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#time_labelled_fiducial_marker_locations')
+        self._time_labelled_electrode_marker_locations = (
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#port',
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
+            'http://physiomeproject.org/workflow/1.0/rdf-schema#time_labelled_electrode_marker_locations')
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'http://physiomeproject.org/workflow/1.0/rdf-schema#images'))
+                      'http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data'))
         # Port data:
-        self._image_context_data = None
-        self._fidcial_marker_data = None # fiducial_marker_data
-        self._images_info = None # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+        self._fiducial_marker_data = None # fiducial_marker_data
+        self._images_context_data = None # http://physiomeproject.org/workflow/1.0/rdf-schema#images
         # Config:
-        self._config = {'identifier': ''}
+        self._config = {'identifier': '', 'output_port': 'fiducials'}
         self._view = None
         self._model = None
 
@@ -60,7 +61,9 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
         except FileNotFoundError:
             pass
 
-        self._model = ImageBasedFiducialMarkersMasterModel()
+        print(self._config)
+
+        self._model = ImageBasedFiducialMarkersMasterModel(self._images_context_data)
         if 'model' in all_settings:
             self._model.set_settings(all_settings['model'])
 
@@ -68,7 +71,7 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
         if 'view' in all_settings:
             self._view.set_settings(all_settings['view'])
 
-        self._view.set_images_info(self._images_info)
+        # self._view.set_images_info(self._images_context_data)
         self._view.register_done_callback(self._interactionDone)
         self._setCurrentWidget(self._view)
 
@@ -78,7 +81,7 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
         with open(self._get_settings_file_name(), 'w') as f:
             f.write(settings_in_string_form)
 
-        self._fidcial_marker_data = self._model.get_tracking_points_model().get_key_points_description()
+        self._fiducial_marker_data = self._model.get_tracking_points_model().get_key_points_description()
         self._image_context_data = self._model.get_image_context_data()
         self._view = None
         self._model = None
@@ -96,7 +99,7 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
         :param index: Index of the port to return.
         :param dataIn: The data to set for the port at the given index.
         """
-        self._images_info = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+        self._images_context_data = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data
 
     def getPortData(self, index):
         """
@@ -110,7 +113,7 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
         if index == 0:
             port_data = self._image_context_data
         elif index == 1:
-            port_data = self._fidcial_marker_data
+            port_data = self._fiducial_marker_data
 
         return port_data
 
@@ -130,9 +133,20 @@ class ImageBasedFiducialMarkersStep(WorkflowStepMountPoint):
 
         if dlg.exec_():
             self._config = dlg.getConfig()
+            if self._config['output_port'] == 'fiducials':
+                self._add_or_replace_port(self._time_labelled_fiducial_marker_locations)
+            elif self._config['output_port'] == 'electrodes':
+                self._add_or_replace_port(self._time_labelled_electrode_marker_locations)
 
         self._configured = dlg.validate()
         self._configuredObserver()
+
+    def _add_or_replace_port(self, port):
+        if len(self._ports) == 1:
+            self.addPort(port)
+        elif len(self._ports) == 2:
+            self._ports.pop()
+            self.addPort(port)
 
     def getIdentifier(self):
         """
