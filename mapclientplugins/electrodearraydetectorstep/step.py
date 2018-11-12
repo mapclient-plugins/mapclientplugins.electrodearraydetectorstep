@@ -9,10 +9,10 @@ from PySide import QtGui
 
 from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
 from mapclientplugins.electrodearraydetectorstep.configuredialog import ConfigureDialog
-from mapclientplugins.electrodearraydetectorstep.model.imagebasedfiducialmarkersmastermodel import \
-    ImageBasedFiducialMarkersMasterModel
-from mapclientplugins.electrodearraydetectorstep.view.imagebasedfiducialmarkerswidget import \
-    ImageBasedFiducialMarkersWidget
+from mapclientplugins.electrodearraydetectorstep.model.mastermodel import \
+    MasterModel
+from mapclientplugins.electrodearraydetectorstep.view.electrodearraydetectorwidget import \
+    ElectrodeArrayDetectorWidget
 
 
 class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
@@ -63,11 +63,11 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
 
         print(self._config)
 
-        self._model = ImageBasedFiducialMarkersMasterModel(self._images_context_data)
+        self._model = MasterModel(self._images_context_data)
         if 'model' in all_settings:
             self._model.set_settings(all_settings['model'])
 
-        self._view = ImageBasedFiducialMarkersWidget(self._model)
+        self._view = ElectrodeArrayDetectorWidget(self._model)
         if 'view' in all_settings:
             self._view.set_settings(all_settings['view'])
 

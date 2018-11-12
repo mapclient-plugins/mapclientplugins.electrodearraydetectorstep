@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mapclientplugins\electrodearraydetectorstep\qt\imagebasedfiducialmarkerswidget.ui'
+# Form implementation generated from reading ui file 'mapclientplugins\electrodearraydetectorstep\qt\electrodearraydetectorwidget.ui'
 #
-# Created: Tue Sep 11 14:37:18 2018
+# Created: Mon Nov 12 13:53:13 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
 
-class Ui_ImageBasedFiducialMarkersWidget(object):
-    def setupUi(self, ImageBasedFiducialMarkersWidget):
-        ImageBasedFiducialMarkersWidget.setObjectName("ImageBasedFiducialMarkersWidget")
-        ImageBasedFiducialMarkersWidget.resize(870, 576)
-        self.horizontalLayout = QtGui.QHBoxLayout(ImageBasedFiducialMarkersWidget)
+class Ui_ElectrodeArrayDetectorWidget(object):
+    def setupUi(self, ElectrodeArrayDetectorWidget):
+        ElectrodeArrayDetectorWidget.setObjectName("ElectrodeArrayDetectorWidget")
+        ElectrodeArrayDetectorWidget.resize(870, 576)
+        self.horizontalLayout = QtGui.QHBoxLayout(ElectrodeArrayDetectorWidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.controlPanel_groupBox = QtGui.QGroupBox(ImageBasedFiducialMarkersWidget)
+        self.controlPanel_groupBox = QtGui.QGroupBox(ElectrodeArrayDetectorWidget)
         self.controlPanel_groupBox.setObjectName("controlPanel_groupBox")
         self.verticalLayout = QtGui.QVBoxLayout(self.controlPanel_groupBox)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -123,7 +123,7 @@ class Ui_ImageBasedFiducialMarkersWidget(object):
         self.horizontalLayout_2.addItem(spacerItem1)
         self.verticalLayout.addWidget(self.frame)
         self.horizontalLayout.addWidget(self.controlPanel_groupBox)
-        self.sceneviewer_widget = BaseSceneviewerWidget(ImageBasedFiducialMarkersWidget)
+        self.sceneviewer_widget = BaseSceneviewerWidget(ElectrodeArrayDetectorWidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
@@ -132,29 +132,28 @@ class Ui_ImageBasedFiducialMarkersWidget(object):
         self.sceneviewer_widget.setObjectName("sceneviewer_widget")
         self.horizontalLayout.addWidget(self.sceneviewer_widget)
 
-        self.retranslateUi(ImageBasedFiducialMarkersWidget)
-        QtCore.QMetaObject.connectSlotsByName(ImageBasedFiducialMarkersWidget)
+        self.retranslateUi(ElectrodeArrayDetectorWidget)
+        QtCore.QMetaObject.connectSlotsByName(ElectrodeArrayDetectorWidget)
 
-    def retranslateUi(self, ImageBasedFiducialMarkersWidget):
-        ImageBasedFiducialMarkersWidget.setWindowTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Electrode Array Detector", None, QtGui.QApplication.UnicodeUTF8))
-        self.controlPanel_groupBox.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Control Panel", None, QtGui.QApplication.UnicodeUTF8))
-        self.time_groupBox.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Time:", None, QtGui.QApplication.UnicodeUTF8))
-        self.timePlayStop_pushButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Play", None, QtGui.QApplication.UnicodeUTF8))
-        self.timeValue_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Time value:", None, QtGui.QApplication.UnicodeUTF8))
-        self.timeLoop_checkBox.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Loop", None, QtGui.QApplication.UnicodeUTF8))
-        self.video_groupBox.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Video:", None, QtGui.QApplication.UnicodeUTF8))
-        self.frameIndex_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Frame index:", None, QtGui.QApplication.UnicodeUTF8))
-        self.framesPerSecond_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Frames per second:", None, QtGui.QApplication.UnicodeUTF8))
-        self.numFrames_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "# frames:", None, QtGui.QApplication.UnicodeUTF8))
-        self.numFramesValue_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Activity:", None, QtGui.QApplication.UnicodeUTF8))
-        self.defineROI_radioButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Define ROI", None, QtGui.QApplication.UnicodeUTF8))
-        self.defineROI_pushButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Confirm", None, QtGui.QApplication.UnicodeUTF8))
-        self.setInitialTrackingPoints_pushButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Confirm", None, QtGui.QApplication.UnicodeUTF8))
-        self.setInitialTrackingPoints_radioButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Set initial tracking points", None, QtGui.QApplication.UnicodeUTF8))
-        self.finaliseTrackingPoints_radioButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Finalise tracking points", None, QtGui.QApplication.UnicodeUTF8))
-        self.statusText_label.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
-        self.done_pushButton.setText(QtGui.QApplication.translate("ImageBasedFiducialMarkersWidget", "Done", None, QtGui.QApplication.UnicodeUTF8))
-
+    def retranslateUi(self, ElectrodeArrayDetectorWidget):
+        ElectrodeArrayDetectorWidget.setWindowTitle(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Electrode Array Detector", None, QtGui.QApplication.UnicodeUTF8))
+        self.controlPanel_groupBox.setTitle(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Control Panel", None, QtGui.QApplication.UnicodeUTF8))
+        self.time_groupBox.setTitle(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Time:", None, QtGui.QApplication.UnicodeUTF8))
+        self.timePlayStop_pushButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Play", None, QtGui.QApplication.UnicodeUTF8))
+        self.timeValue_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Time value:", None, QtGui.QApplication.UnicodeUTF8))
+        self.timeLoop_checkBox.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Loop", None, QtGui.QApplication.UnicodeUTF8))
+        self.video_groupBox.setTitle(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Video:", None, QtGui.QApplication.UnicodeUTF8))
+        self.frameIndex_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Frame index:", None, QtGui.QApplication.UnicodeUTF8))
+        self.framesPerSecond_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Frames per second:", None, QtGui.QApplication.UnicodeUTF8))
+        self.numFrames_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "# frames:", None, QtGui.QApplication.UnicodeUTF8))
+        self.numFramesValue_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Activity:", None, QtGui.QApplication.UnicodeUTF8))
+        self.defineROI_radioButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Define ROI", None, QtGui.QApplication.UnicodeUTF8))
+        self.defineROI_pushButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Confirm", None, QtGui.QApplication.UnicodeUTF8))
+        self.setInitialTrackingPoints_pushButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Confirm", None, QtGui.QApplication.UnicodeUTF8))
+        self.setInitialTrackingPoints_radioButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Set initial tracking points", None, QtGui.QApplication.UnicodeUTF8))
+        self.finaliseTrackingPoints_radioButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Finalise tracking points", None, QtGui.QApplication.UnicodeUTF8))
+        self.statusText_label.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "TextLabel", None, QtGui.QApplication.UnicodeUTF8))
+        self.done_pushButton.setText(QtGui.QApplication.translate("ElectrodeArrayDetectorWidget", "Done", None, QtGui.QApplication.UnicodeUTF8))
 
 from opencmiss.zincwidgets.basesceneviewerwidget import BaseSceneviewerWidget

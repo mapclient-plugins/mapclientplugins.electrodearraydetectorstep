@@ -9,7 +9,7 @@ from mapclientplugins.electrodearraydetectorstep.scene.imageplanescene import Im
 from mapclientplugins.electrodearraydetectorstep.scene.trackingpointsscene import TrackingPointsScene
 
 
-class ImageBasedFiducialMarkersMasterModel(object):
+class MasterModel(object):
 
     def __init__(self, image_context_data):
         self._settings = {

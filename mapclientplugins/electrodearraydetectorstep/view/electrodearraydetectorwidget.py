@@ -10,18 +10,18 @@ from mapclientplugins.electrodearraydetectorstep.static.strings import DEFINE_RO
     SET_INITIAL_TRACKING_POINTS_STRING, FINALISE_TRACKING_POINTS_STRING
 from mapclientplugins.electrodearraydetectorstep.tools.datapointtool import DataPointTool
 from mapclientplugins.electrodearraydetectorstep.tools.trackingtool import TrackingTool
-from mapclientplugins.electrodearraydetectorstep.view.ui_imagebasedfiducialmarkerswidget\
-    import Ui_ImageBasedFiducialMarkersWidget
+from mapclientplugins.electrodearraydetectorstep.view.ui_electrodearraydetectorwidget \
+    import Ui_ElectrodeArrayDetectorWidget
 
 PLAY_TEXT = 'Play'
 STOP_TEXT = 'Stop'
 
 
-class ImageBasedFiducialMarkersWidget(QtGui.QWidget):
+class ElectrodeArrayDetectorWidget(QtGui.QWidget):
 
     def __init__(self, model, parent=None):
-        super(ImageBasedFiducialMarkersWidget, self).__init__(parent)
-        self._ui = Ui_ImageBasedFiducialMarkersWidget()
+        super(ElectrodeArrayDetectorWidget, self).__init__(parent)
+        self._ui = Ui_ElectrodeArrayDetectorWidget()
         self._ui.setupUi(self)
         self._ui.sceneviewer_widget.set_context(model.get_context())
 
@@ -38,6 +38,9 @@ class ImageBasedFiducialMarkersWidget(QtGui.QWidget):
 
         self._image_plane_model = model.get_image_plane_model()
         tracking_points_model = model.get_tracking_points_model()
+        tracking_points_model.create_model()
+        tracking_points_scene = model.get_tracking_points_scene()
+        tracking_points_scene.create_graphics()
 
         self._data_point_tool = DataPointTool(tracking_points_model, self._image_plane_model)
         self._tracking_tool = TrackingTool(model)
@@ -87,6 +90,7 @@ class ImageBasedFiducialMarkersWidget(QtGui.QWidget):
 
     def _set_initial_ui_state(self):
         self._ui.timeLoop_checkBox.setChecked(self._model.is_time_loop())
+        self._frame_index_value_changed(1)
         self._ui.defineROI_radioButton.setChecked(True)
         self._enter_define_roi()
         minimum_label_width = self._calculate_minimum_label_width()
