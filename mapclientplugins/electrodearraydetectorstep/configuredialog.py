@@ -72,8 +72,7 @@ class ConfigureDialog(QtWidgets.QDialog):
         identifier over the whole of the workflow.
         '''
         self._previousIdentifier = self._ui.identifier_lineEdit.text()
-        config = {'identifier': self._ui.identifier_lineEdit.text(),
-                  'output_port': 'fiducials' if self._ui.fiducials_radioButton.isChecked() else 'electrodes'}
+        config = {'identifier': self._ui.identifier_lineEdit.text()}
         return config
 
     def setConfig(self, config):
@@ -84,5 +83,3 @@ class ConfigureDialog(QtWidgets.QDialog):
         '''
         self._previousIdentifier = config['identifier']
         self._ui.identifier_lineEdit.setText(config['identifier'])
-        self._ui.fiducials_radioButton.setChecked(config['output_port'] == 'fiducials')
-        self._ui.electrode_radioButton.setChecked(config['output_port'] == 'electrodes')

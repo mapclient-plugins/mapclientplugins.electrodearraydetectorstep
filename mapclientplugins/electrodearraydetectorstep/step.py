@@ -28,10 +28,6 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
         # Add any other initialisation code here:
         self._icon = QtGui.QImage(':/electrodearraydetectorstep/images/image-processing.png')
         # Ports:
-        self._time_labelled_fiducial_marker_locations = (
-            'http://physiomeproject.org/workflow/1.0/rdf-schema#port',
-            'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
-            'http://physiomeproject.org/workflow/1.0/rdf-schema#time_labelled_fiducial_marker_locations')
         self._time_labelled_electrode_marker_locations = (
             'http://physiomeproject.org/workflow/1.0/rdf-schema#port',
             'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
@@ -39,6 +35,7 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data'))
+        self.addPort(self._time_labelled_electrode_marker_locations)
         # Port data:
         self._fiducial_marker_data = None # fiducial_marker_data
         self._images_context_data = None # http://physiomeproject.org/workflow/1.0/rdf-schema#images
@@ -61,8 +58,6 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
         except FileNotFoundError:
             pass
 
-        print(self._config)
-
         self._model = MasterModel(self._images_context_data)
         if 'model' in all_settings:
             self._model.set_settings(all_settings['model'])
@@ -82,7 +77,6 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
             f.write(settings_in_string_form)
 
         self._fiducial_marker_data = self._model.get_tracking_points_model().get_key_points_description()
-        self._image_context_data = self._model.get_image_context_data()
         self._view = None
         self._model = None
         self._doneExecution()

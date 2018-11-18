@@ -31,11 +31,10 @@ class TrackingTool(object):
             image_points = self._image_plane_model.convert_to_image_coordinates(key_points)
             numpy_points = np.asarray(image_points, dtype=np.float32)
             number_of_images = self._image_plane_model.get_frame_count()
-            frames_per_second = self._master_model.get_frames_per_second()
             previous_gray_image = self._processor.get_gray_image()
             image_index = self._key_index
             while image_index < number_of_images:
-                time = self._image_plane_model.get_time_for_frame_index(image_index, frames_per_second)
+                time = self._image_plane_model.get_time_for_frame_index(image_index)
                 file_name = self._image_plane_model.get_image_file_name_at(image_index)
                 self._process_image(file_name)
                 current_gray_image = self._processor.get_gray_image()
@@ -52,21 +51,25 @@ class TrackingTool(object):
 
     def analyse_roi(self, image_index, zinc_sceneviewer, element, rectangle_description):
         image_roi = self._convert_to_image_roi(zinc_sceneviewer, element, rectangle_description)
-        image_key_points = self._analyse_roi(image_index, image_roi)
-        image_points = [key_point.pt for key_point in image_key_points]
+        roi_for_cv2 = [image_roi[1], image_roi[0], image_roi[3], image_roi[2]]
+        image_key_points = self._analyse_roi(image_index, roi_for_cv2)
+        image_points = image_key_points.tolist()
         key_points = self._image_plane_model.convert_to_model_coordinates(image_points)
         self._tracking_points_model.create_electrode_key_points(key_points)
 
     def _process_image(self, file_name):
         self._processor.read_image(file_name)
-        self._processor.filter_and_threshold()
+        self._processor.rgb_and_blur_and_hsv(threshold=9)
+        self._processor.determine_electrode_mask()
+        # self._processor.filter_and_threshold()
 
     def _analyse_roi(self, image_index, image_roi):
         self._key_index = image_index
         file_name = self._image_plane_model.get_image_file_name_at(image_index)
         self._process_image(file_name)
         self._processor.mask_and_image(image_roi)
-        image_points, dst = self._processor.feature_detect()
+        self._processor.final_mask()
+        image_points, dst = self._processor.detect_electrodes()
 
         return image_points
 
@@ -84,6 +87,7 @@ class TrackingTool(object):
         y1 = rectangle_description[1]
         x2 = rectangle_description[2]
         y2 = rectangle_description[3]
+        print(x1, y1, x2, y2)
         coordinate_field = self._image_plane_model.get_coordinate_field()
         top_left_mesh_location = _determine_the_mesh_location(
             scene_viewer, x1, y1, element, coordinate_field)

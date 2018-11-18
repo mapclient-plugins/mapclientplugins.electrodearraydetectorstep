@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mapclientplugins\electrodearraydetectorstep\qt\configuredialog.ui'
 #
-# Created: Fri Oct 26 10:10:53 2018
+# Created: Mon Nov 12 14:25:03 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,13 +35,6 @@ class Ui_ConfigureDialog(object):
         self.verticalLayout.setSpacing(4)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.fiducials_radioButton = QtGui.QRadioButton(self.frame)
-        self.fiducials_radioButton.setChecked(True)
-        self.fiducials_radioButton.setObjectName("fiducials_radioButton")
-        self.verticalLayout.addWidget(self.fiducials_radioButton)
-        self.electrode_radioButton = QtGui.QRadioButton(self.frame)
-        self.electrode_radioButton.setObjectName("electrode_radioButton")
-        self.verticalLayout.addWidget(self.electrode_radioButton)
         self.formLayout.setWidget(1, QtGui.QFormLayout.SpanningRole, self.frame)
         self.verticalLayout_2.addWidget(self.configGroupBox)
         self.buttonBox = QtGui.QDialogButtonBox(ConfigureDialog)
@@ -58,6 +51,4 @@ class Ui_ConfigureDialog(object):
     def retranslateUi(self, ConfigureDialog):
         ConfigureDialog.setWindowTitle(QtGui.QApplication.translate("ConfigureDialog", "Configure Step", None, QtGui.QApplication.UnicodeUTF8))
         self.identifier_label.setText(QtGui.QApplication.translate("ConfigureDialog", "identifier:  ", None, QtGui.QApplication.UnicodeUTF8))
-        self.fiducials_radioButton.setText(QtGui.QApplication.translate("ConfigureDialog", "Detect and output fiducial markers only", None, QtGui.QApplication.UnicodeUTF8))
-        self.electrode_radioButton.setText(QtGui.QApplication.translate("ConfigureDialog", "Detect and output electrode locations only", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -67,11 +67,12 @@ class MasterModel(object):
         self._timekeeper.setTime(self._current_time)
         self._time_value_update(self._current_time)
 
+    def get_frame_index(self):
+        return self._image_plane_model.get_frame_index_for_time(self._current_time)
+
     def set_time_value(self, time):
         self._current_time = time
         self._timekeeper.setTime(time)
-        frame_index = self._image_plane_model.get_frame_index_for_time(time) + 1
-        self._frame_index_update(frame_index)
 
     def get_time_sequence(self):
         time_sequence = []
