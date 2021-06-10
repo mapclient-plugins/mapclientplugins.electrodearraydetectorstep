@@ -1,5 +1,3 @@
-
-
 from PySide2 import QtWidgets
 from mapclientplugins.electrodearraydetectorstep.ui_configuredialog import Ui_ConfigureDialog
 

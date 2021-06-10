@@ -1,4 +1,3 @@
-
 from opencmiss.zinc.status import OK as CMISS_OK
 from opencmiss.utils.zinc import create_finite_element_field, create_node, AbstractNodeDataObject
 

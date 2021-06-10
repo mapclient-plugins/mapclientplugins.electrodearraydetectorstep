@@ -1,4 +1,3 @@
-
 from PySide2 import QtCore, QtWidgets
 
 from opencmiss.zinchandlers.scenemanipulation import SceneManipulation
@@ -138,7 +137,7 @@ class ElectrodeArrayDetectorWidget(QtWidgets.QWidget):
         rectangle_description = self._rectangle_tool.get_rectangle_box_description()
         if sum(rectangle_description) < 0:
             QtWidgets.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
-                                      ' analysis will not be performed')
+                                                               ' analysis will not be performed')
         else:
             self._rectangle_tool.remove_rectangle_box()
             self._ui.sceneviewer_widget.unregister_handler(self._rectangle_tool)
@@ -157,7 +156,7 @@ class ElectrodeArrayDetectorWidget(QtWidgets.QWidget):
                 QtWidgets.QApplication.restoreOverrideCursor()
             else:
                 QtWidgets.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
-                                          ' analysis will not be performed')
+                                                                   ' analysis will not be performed')
 
     def _enter_track_electrode_points(self):
         self._ui.sceneviewer_widget.register_handler(self._data_point_adder)

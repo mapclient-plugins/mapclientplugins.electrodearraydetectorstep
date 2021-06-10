@@ -1,4 +1,3 @@
-
 """
 MAP Client Plugin Step
 """
@@ -23,7 +22,7 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(ElectrodeArrayDetectorStep, self).__init__('Electrode Array Detector', location)
-        self._configured = False # A step cannot be executed until it has been configured.
+        self._configured = False  # A step cannot be executed until it has been configured.
         self._category = 'Image Processing'
         # Add any other initialisation code here:
         self._icon = QtGui.QImage(':/electrodearraydetectorstep/images/image-processing.png')
@@ -37,8 +36,8 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data'))
         self.addPort(self._time_labelled_electrode_marker_locations)
         # Port data:
-        self._fiducial_marker_data = None # fiducial_marker_data
-        self._images_context_data = None # http://physiomeproject.org/workflow/1.0/rdf-schema#images
+        self._fiducial_marker_data = None  # fiducial_marker_data
+        self._images_context_data = None  # http://physiomeproject.org/workflow/1.0/rdf-schema#images
         # Config:
         self._config = {'identifier': '', 'output_port': 'fiducials'}
         self._view = None
@@ -93,7 +92,7 @@ class ElectrodeArrayDetectorStep(WorkflowStepMountPoint):
         :param index: Index of the port to return.
         :param dataIn: The data to set for the port at the given index.
         """
-        self._images_context_data = dataIn # http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data
+        self._images_context_data = dataIn  # http://physiomeproject.org/workflow/1.0/rdf-schema#image_context_data
 
     def getPortData(self, index):
         """
