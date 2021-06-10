@@ -1,7 +1,8 @@
 from __future__ import division
 
 from PySide2 import QtCore
-from opencmiss.utils.zinc import defineStandardVisualisationTools
+# from opencmiss.utils.zinc import defineStandardVisualisationTools
+from opencmiss.utils.zinc.general import defineStandardGraphicsObjects
 
 from mapclientplugins.electrodearraydetectorstep.model.imageplanemodel import ImagePlaneModel
 from mapclientplugins.electrodearraydetectorstep.model.trackingpointsmodel import TrackingPointsModel
@@ -17,7 +18,8 @@ class MasterModel(object):
         }
 
         self._context = image_context_data.get_context()
-        defineStandardVisualisationTools(self._context)
+        # defineStandardVisualisationTools(self._context)
+        defineStandardGraphicsObjects(self._context)
         self._default_region = self._context.getDefaultRegion()
 
         timekeeper_module = self._context.getTimekeepermodule()
