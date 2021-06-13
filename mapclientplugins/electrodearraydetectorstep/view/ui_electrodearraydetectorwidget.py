@@ -12,7 +12,7 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-from opencmiss\zincwidgets\basesceneviewerwidget import BaseSceneviewerWidget
+from opencmiss.utils.zinc.widgets.basesceneviewerwidget import BaseSceneviewerWidget
 
 
 class Ui_ElectrodeArrayDetectorWidget(object):
@@ -120,8 +120,8 @@ class Ui_ElectrodeArrayDetectorWidget(object):
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame)
-        self.horizontalLayout_2.setContentsMargins(1, 1, 1, 1)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(1, 1, 1, 1)
         self.done_pushButton = QPushButton(self.frame)
         self.done_pushButton.setObjectName(u"done_pushButton")
 
