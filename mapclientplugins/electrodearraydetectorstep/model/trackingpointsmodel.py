@@ -1,6 +1,6 @@
-
 from opencmiss.zinc.status import OK as CMISS_OK
-from opencmiss.utils.zinc import create_finite_element_field, create_node, AbstractNodeDataObject
+from opencmiss.utils.zinc.field import create_field_finite_element
+from opencmiss.utils.zinc.general import create_node, AbstractNodeDataObject
 
 
 class NodeCreator(AbstractNodeDataObject):
@@ -178,7 +178,7 @@ class TrackingPointsModel(object):
             default_region.removeChild(self._region)
 
         self._region = default_region.createChild('tracking')
-        self._coordinate_field = create_finite_element_field(self._region)
+        self._coordinate_field = create_field_finite_element(self._region)
 
         field_module = self._region.getFieldmodule()
         field_module.beginChange()

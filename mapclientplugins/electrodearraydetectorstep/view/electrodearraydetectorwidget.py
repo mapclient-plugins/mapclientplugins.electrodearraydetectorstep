@@ -1,7 +1,6 @@
+from PySide2 import QtCore, QtWidgets
 
-from PySide import QtGui, QtCore
-
-from opencmiss.zinchandlers.scenemanipulation import SceneManipulation
+from opencmiss.utils.zinc.handlers.scenemanipulation import SceneManipulation
 
 from mapclientplugins.electrodearraydetectorstep.handlers.datapointadder import DataPointAdder
 from mapclientplugins.electrodearraydetectorstep.handlers.datapointremover import DataPointRemover
@@ -17,7 +16,7 @@ PLAY_TEXT = 'Play'
 STOP_TEXT = 'Stop'
 
 
-class ElectrodeArrayDetectorWidget(QtGui.QWidget):
+class ElectrodeArrayDetectorWidget(QtWidgets.QWidget):
 
     def __init__(self, model, parent=None):
         super(ElectrodeArrayDetectorWidget, self).__init__(parent)
@@ -137,8 +136,8 @@ class ElectrodeArrayDetectorWidget(QtGui.QWidget):
     def _leave_define_roi(self):
         rectangle_description = self._rectangle_tool.get_rectangle_box_description()
         if sum(rectangle_description) < 0:
-            QtGui.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
-                                      ' analysis will not be performed')
+            QtWidgets.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
+                                                               ' analysis will not be performed')
         else:
             self._rectangle_tool.remove_rectangle_box()
             self._ui.sceneviewer_widget.unregister_handler(self._rectangle_tool)
@@ -146,18 +145,18 @@ class ElectrodeArrayDetectorWidget(QtGui.QWidget):
 
             x = rectangle_description[0]
             y = rectangle_description[1]
-            QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+            QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
             element = self._ui.sceneviewer_widget.get_nearest_element(x, y)
-            QtGui.QApplication.restoreOverrideCursor()
+            QtWidgets.QApplication.restoreOverrideCursor()
             if element.isValid():
-                QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+                QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
                 image_index = self._model.get_frame_index() - 1
                 self._tracking_tool.analyse_roi(
                     image_index, self._ui.sceneviewer_widget.get_zinc_sceneviewer(), element, rectangle_description)
-                QtGui.QApplication.restoreOverrideCursor()
+                QtWidgets.QApplication.restoreOverrideCursor()
             else:
-                QtGui.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
-                                          ' analysis will not be performed')
+                QtWidgets.QMessageBox.warning(self, 'Invalid ROI', 'The region of interest is invalid and region'
+                                                                   ' analysis will not be performed')
 
     def _enter_track_electrode_points(self):
         self._ui.sceneviewer_widget.register_handler(self._data_point_adder)
@@ -171,9 +170,9 @@ class ElectrodeArrayDetectorWidget(QtGui.QWidget):
         self._ui.sceneviewer_widget.unregister_key_listener(QtCore.Qt.Key_Return)
 
         # Perform the tracking for all images.
-        QtGui.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
+        QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
         self._tracking_tool.track_key_points()
-        QtGui.QApplication.restoreOverrideCursor()
+        QtWidgets.QApplication.restoreOverrideCursor()
 
     def _enter_finalise_tracking_points(self):
         self._ui.sceneviewer_widget.register_handler(self._data_point_adder)

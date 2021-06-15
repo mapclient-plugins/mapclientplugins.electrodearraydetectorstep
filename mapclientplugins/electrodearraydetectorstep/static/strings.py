@@ -1,4 +1,3 @@
-
 DEFINE_ROI_STRING = 'Define the region of interest holding down the "d" key' \
                     ' and selecting a region with the mouse.'
 SET_INITIAL_TRACKING_POINTS_STRING = 'Set the initial tracking points by pressing the "a" key' \

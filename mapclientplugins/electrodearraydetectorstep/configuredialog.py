@@ -1,6 +1,4 @@
-
-
-from PySideX import QtWidgets
+from PySide2 import QtWidgets
 from mapclientplugins.electrodearraydetectorstep.ui_configuredialog import Ui_ConfigureDialog
 
 INVALID_STYLE_SHEET = 'background-color: rgba(239, 0, 0, 50)'
