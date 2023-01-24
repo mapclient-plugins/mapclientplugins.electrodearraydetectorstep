@@ -2,7 +2,7 @@
 MAP Client Plugin
 """
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __author__ = 'Hugh Sorby'
 __stepname__ = 'Electrode Array Detector'
 __location__ = 'https://github.com/mapclient-plugins/mapclientplugins.imagebasedfiducialmarkers/archive/master.zip'
