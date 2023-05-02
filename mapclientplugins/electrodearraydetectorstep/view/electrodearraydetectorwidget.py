@@ -1,6 +1,6 @@
 from PySide6 import QtCore, QtWidgets
 
-from opencmiss.utils.zinc.handlers.scenemanipulation import SceneManipulation
+from cmlibs.widgets.handlers.scenemanipulation import SceneManipulation
 
 from mapclientplugins.electrodearraydetectorstep.handlers.datapointadder import DataPointAdder
 from mapclientplugins.electrodearraydetectorstep.handlers.datapointremover import DataPointRemover

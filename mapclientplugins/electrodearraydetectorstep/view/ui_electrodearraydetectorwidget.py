@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QDoubleSpinBox, QFormLay
     QLabel, QPushButton, QSizePolicy, QSpacerItem,
     QVBoxLayout, QWidget)
 
-from opencmiss.utils.zinc.widgets.basesceneviewerwidget import BaseSceneviewerWidget
+from cmlibs.widgets.basesceneviewerwidget import BaseSceneviewerWidget
 
 class Ui_ElectrodeArrayDetectorWidget(object):
     def setupUi(self, ElectrodeArrayDetectorWidget):
